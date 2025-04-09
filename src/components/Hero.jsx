@@ -1,5 +1,6 @@
 import React from 'react';
 import personalData from '../data/personal';
+import Terminal from './Terminal';
 
 const Hero = () => {
   return (
@@ -29,10 +30,17 @@ const Hero = () => {
               Hi, I'm <span className="text-primary">{personalData.name}</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-light mb-10">{personalData.title}</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-5">
-              <a href="#contact" className="btn btn-primary">Contact Me</a>
-              <a href="#projects" className="btn btn-secondary">View Projects</a>
-            </div>
+            
+            {/* Terminal Component - now with infinite typing loop */}
+            <Terminal 
+              command="sudo apt install everything-in-the-world"
+              typingSpeed={80}
+              deletingSpeed={40}
+              initialDelay={1000}
+              pauseBeforeDelete={1800}
+              pauseBeforeType={1000}
+              className="mt-10 max-w-2xl mx-auto"
+            />
           </div>
         </div>
       </div>

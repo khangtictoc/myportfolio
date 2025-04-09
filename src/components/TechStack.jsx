@@ -44,9 +44,9 @@ const TechStack = () => {
       <div className="container">
         <h2 className="section-title">Tech Stack</h2>
         <div className="flex flex-wrap gap-8 justify-between">
-          <SkillCategory title="Frontend" skills={skills.frontend} />
-          <SkillCategory title="Backend" skills={skills.backend} />
-          <SkillCategory title="Tools & Others" skills={skills.tools} />
+          <SkillCategory title="Devops, Cloud & Infra" skills={skills.frontend} />
+          <SkillCategory title="Programming & Frameworks" skills={skills.backend} />
+          <SkillCategory title="Testing, Document & Others" skills={skills.tools} />
         </div>
       </div>
     </section>
