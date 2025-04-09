@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles that extend Tailwind */
+@layer components {
+  .btn {
+    @apply px-6 py-2.5 rounded-full font-semibold transition-all duration-300 inline-block cursor-pointer text-base;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-secondary hover:transform hover:-translate-y-1 hover:shadow-custom-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white hover:transform hover:-translate-y-1;
+  }
+  
+  .btn-small {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .section {
+    @apply py-24;
+  }
+  
+  .section-title {
+    @apply text-4xl mb-12 text-center relative;
+  }
+  
+  .section-title:after {
+    content: '';
+    @apply absolute w-[70px] h-1 bg-primary -bottom-3 left-1/2 transform -translate-x-1/2 rounded-sm;
+  }
+  
+  .container {
+    @apply w-[90%] max-w-7xl mx-auto px-5;
+  }
+
+  /* 3D Carousel Styles */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .carousel-container {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Keyframe Animations */
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3D Carousel Animations */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%) rotateY(45deg) scale(0.75);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-60%) rotateY(45deg) scale(0.75);
+    opacity: 0.4;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%) rotateY(-45deg) scale(0.75);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(60%) rotateY(-45deg) scale(0.75);
+    opacity: 0.4;
+  }
+}
+
+@keyframes slideInFromCenter {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
