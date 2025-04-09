@@ -1,0 +1,41 @@
+name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_USERNAME: khangtictoc
+      GITHUB_EMAIL: tranhoangkhang09112001@gmail.com
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Debug
+        run: |
+          git branch
+
+      - name: Prepare Identity for Deploy to GitHub Pages
+        run: |
+          git config --global user.name "${{ env.GITHUB_USERNAME }}"
+          git config --global user.email "${{ env.GITHUB_EMAIL }}"
+          git remote set-url origin https://khangtictoc:${{ secrets.PAT_GITHUB }}@github.com/khangtictoc/myportfolio
+
+      - name: Deploy to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB }}
+        run: npm run deploy
