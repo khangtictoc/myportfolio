@@ -14,7 +14,7 @@ const projects = {
                 "Managed backups, restorations on AWS, maintaining and minimizing downtime to guarantee reliability for clients.",
                 "Effectively diagnosed and resolved infrastructure and application issues, ensuring system stability and optimal performance"
             ],
-            "role": "Lead Developer",
+            "role": "Cloud Engineer",
             "duration": "2 months",
             "year": "2023",
             "githubLink": "https://github.com/yourusername/portfolio",
@@ -32,7 +32,7 @@ const projects = {
                 "Plan schedule for data migrations with phases for minimal impact on business operations",
                 "Design cloud infrastructure & righ-sizing for cost optimization",
             ],
-            "role": "Full Stack Developer",
+            "role": "DevOps Engineer",
             "duration": "4 months",
             "year": "2022",
             "githubLink": "https://github.com/yourusername/ecommerce",

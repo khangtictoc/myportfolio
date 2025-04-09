@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import aboutMeData from '../data/aboutme';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -10,13 +10,13 @@ const About = () => {
   const carouselRef = useRef(null);
   const totalItems = aboutMeData.data.length;
 
-  // Function to go to next slide
-  const goToNext = () => {
+  // Function to go to next slide - wrapped in useCallback
+  const goToNext = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
     setTimeout(() => setIsTransitioning(false), 500); // Match this with your transition duration
-  };
+  }, [isTransitioning, totalItems]);
 
   // Function to go to previous slide
   const goToPrev = () => {
@@ -59,7 +59,8 @@ const About = () => {
     }, 8000); // Change slide every 8 seconds
 
     return () => clearInterval(interval);
-  }, [currentIndex]); // Re-run effect when currentIndex changes
+  }, [goToNext]); // Now only depends on memoized goToNext function
+
 
   // Get current item and neighbors for the 3D effect
   const getCurrentItem = () => aboutMeData.data[currentIndex];
