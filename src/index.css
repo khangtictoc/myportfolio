@@ -300,3 +300,30 @@ code {
   0% { background-position: 0 0; }
   100% { background-position: 0 100%; }
 }
+
+/* Hero h1 heading hover animation */
+.hero-heading {
+  position: relative;
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+
+.hero-heading:hover {
+  transform: scale(1.02);
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-heading::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -8px;
+  left: 25%;
+  right: 25%;
+  background: linear-gradient(90deg, transparent, rgba(74, 108, 247, 0.8), transparent);
+  transition: width 0.5s ease;
+}
+
+.hero-heading:hover::after {
+  width: 50%;
+}

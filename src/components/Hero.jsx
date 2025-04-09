@@ -26,7 +26,7 @@ const Hero = () => {
           
           {/* Text Content - Now below the image */}
           <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-5">
+            <h1 className="text-5xl md:text-6xl font-bold mb-5 hero-heading">
               Hi, I'm <span className="text-primary">{personalData.name}</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-light mb-10">{personalData.title}</p>
