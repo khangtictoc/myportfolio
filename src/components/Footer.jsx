@@ -1,4 +1,5 @@
 import React from 'react';
+import personal from '../data/personal';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-dark text-white py-8 text-center">
       <div className="container">
-        <p>&copy; {currentYear} Your Name. All Rights Reserved.</p>
+        <p>&copy; {currentYear} {personal.name}. All Rights Reserved.</p>
       </div>
     </footer>
   );

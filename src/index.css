@@ -372,6 +372,61 @@ code {
   filter: drop-shadow(0 0 2px rgba(74, 108, 247, 0.5));
 }
 
+/* Profile Logo animations */
+.profile-image-container {
+  position: relative;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.profile-image-container:hover {
+  transform: perspective(1000px) rotateY(10deg) rotateX(5deg) scale(1.05);
+}
+
+.profile-image-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent 40%, rgba(74, 108, 247, 0.5) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.profile-image-container:hover::before {
+  opacity: 1;
+}
+
+.profile-image-container::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(74, 108, 247, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.profile-image-container:hover::after {
+  opacity: 1;
+  filter: blur(8px);
+}
+
+.profile-image {
+  transform: translateZ(0);
+  transition: all 0.5s ease;
+  border-radius: 50%;
+}
+
+.profile-image-container:hover .profile-image {
+  filter: brightness(1.1) contrast(1.1);
+}
+
 /* Elements are hidden by default until they become visible */
 .animate-fadeInUp,
 .animate-fadeIn,

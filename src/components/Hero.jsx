@@ -39,15 +39,15 @@ const Hero = () => {
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
             }`}
           >
-            <div className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white shadow-custom-medium relative mx-auto hover:shadow-custom-heavy transition-all duration-300">
+            <div className="profile-image-container mx-auto">
               {personalData.imageUrl ? (
                 <img 
                   src={personalData.imageUrl} 
                   alt={personalData.name} 
-                  className="w-full h-full object-cover"
+                  className="profile-image w-60 h-60 md:w-72 md:h-72 object-cover border-4 border-white shadow-custom-medium"
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-white text-lg font-medium">
+                <div className="profile-image w-60 h-60 md:w-72 md:h-72 bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-white text-lg font-medium border-4 border-white shadow-custom-medium">
                   Your Photo
                 </div>
               )}
