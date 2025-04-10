@@ -1,7 +1,9 @@
+import profileImg from "../asset/img/profile.png";
+
 const personal = {
     "name": "Khang Hoang Tran",
     "title": "DevSecOps Engineer & Cloud Enthusiast",
-    "imageUrl": null, 
+    "imageUrl": profileImg, 
     "socialLinks": {
         "github": "https://github.com/khangtictoc",
         "linkedin": "https://linkedin.com/in/yourusername",
