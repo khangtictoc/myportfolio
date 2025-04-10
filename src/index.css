@@ -341,10 +341,20 @@ code {
   animation: zoomIn 0.7s forwards;
 }
 
+[data-visible="true"] .animate-slideInLeft {
+  animation: slideInLeft 0.7s forwards;
+}
+
+[data-visible="true"] .animate-slideInRight {
+  animation: slideInRight 0.7s forwards;
+}
+
 /* Elements are hidden by default until they become visible */
 .animate-fadeInUp,
 .animate-fadeIn,
-.animate-zoomIn {
+.animate-zoomIn,
+.animate-slideInLeft,
+.animate-slideInRight {
   opacity: 0;
 }
 
@@ -376,5 +386,27 @@ code {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
