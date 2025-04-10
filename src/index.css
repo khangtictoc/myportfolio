@@ -258,6 +258,146 @@ code {
   }
 }
 
+/* Carousel transition animations */
+@keyframes moveToCenter {
+  0% {
+    transform: translateX(60%) rotateY(-45deg) scale(0.75);
+    opacity: 0.4;
+    filter: blur(2px);
+    z-index: 10;
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateX(0) rotateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+    z-index: 20;
+  }
+}
+
+@keyframes moveToLeft {
+  0% {
+    transform: translateX(0) rotateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+    z-index: 20;
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateX(-60%) rotateY(45deg) scale(0.75);
+    opacity: 0.4;
+    filter: blur(2px);
+    z-index: 10;
+  }
+}
+
+@keyframes moveToRight {
+  0% {
+    transform: translateX(0) rotateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+    z-index: 20;
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateX(60%) rotateY(-45deg) scale(0.75);
+    opacity: 0.4;
+    filter: blur(2px);
+    z-index: 10;
+  }
+}
+
+@keyframes moveFromLeft {
+  0% {
+    transform: translateX(-60%) rotateY(45deg) scale(0.75);
+    opacity: 0.4;
+    filter: blur(2px);
+    z-index: 10;
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateX(0) rotateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+    z-index: 20;
+  }
+}
+
+/* Carousel position classes */
+.carousel-center {
+  transform: translateX(0) rotateY(0) scale(1);
+  opacity: 1;
+  z-index: 20;
+  filter: blur(0);
+}
+
+.carousel-left {
+  transform: translateX(-60%) rotateY(45deg) scale(0.75);
+  opacity: 0.4;
+  z-index: 10;
+  filter: blur(2px);
+}
+
+.carousel-right {
+  transform: translateX(60%) rotateY(-45deg) scale(0.75);
+  opacity: 0.4;
+  z-index: 10; 
+  filter: blur(2px);
+}
+
+.carousel-hidden {
+  opacity: 0;
+  z-index: 5;
+}
+
+/* Carousel transition animations */
+.carousel-move-to-center {
+  animation: moveToCenter 0.5s ease-out forwards;
+}
+
+.carousel-move-to-left {
+  animation: moveToLeft 0.5s ease-out forwards;
+}
+
+.carousel-move-to-right {
+  animation: moveToRight 0.5s ease-out forwards;
+}
+
+.carousel-move-from-left {
+  animation: moveFromLeft 0.5s ease-out forwards;
+}
+
+.carousel-stay-left {
+  animation: none;
+  transform: translateX(-60%) rotateY(45deg) scale(0.75);
+  opacity: 0.4;
+  filter: blur(2px);
+}
+
+.carousel-stay-right {
+  animation: none;
+  transform: translateX(60%) rotateY(-45deg) scale(0.75);
+  opacity: 0.4;
+  filter: blur(2px);
+}
+
+.carousel-hide {
+  animation: none;
+  opacity: 0;
+}
+
 /* Terminal Animation */
 @keyframes blink {
   0%, 100% { opacity: 1; }

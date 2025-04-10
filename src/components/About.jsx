@@ -5,26 +5,45 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const About = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [direction, setDirection] = useState(null); // 'next' or 'prev'
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const carouselRef = useRef(null);
   const totalItems = aboutMeData.data.length;
-
-  // Function to go to next slide - wrapped in useCallback
+  
+  // Function to go to next slide
   const goToNext = useCallback(() => {
     if (isTransitioning) return;
+    setDirection('next');
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
-    setTimeout(() => setIsTransitioning(false), 500); // Match this with your transition duration
+    
+    // We'll update the current index after the animation is complete
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
+      
+      // Add a small delay before allowing new transitions
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 500);
   }, [isTransitioning, totalItems]);
 
   // Function to go to previous slide
-  const goToPrev = () => {
+  const goToPrev = useCallback(() => {
     if (isTransitioning) return;
+    setDirection('prev');
     setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
-    setTimeout(() => setIsTransitioning(false), 500); // Match this with your transition duration
-  };
+    
+    // We'll update the current index after the animation is complete
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
+      
+      // Add a small delay before allowing new transitions
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 500);
+  }, [isTransitioning, totalItems]);
 
   // Handle touch events for swipe
   const handleTouchStart = (e) => {
@@ -59,13 +78,81 @@ const About = () => {
     }, 8000); // Change slide every 8 seconds
 
     return () => clearInterval(interval);
-  }, [goToNext]); // Now only depends on memoized goToNext function
+  }, [goToNext]);
 
+  // Helper to get item indices
+  const getIndices = () => {
+    const prevIndex = (currentIndex - 1 + totalItems) % totalItems;
+    const nextIndex = (currentIndex + 1) % totalItems;
+    return { prevIndex, nextIndex };
+  };
 
-  // Get current item and neighbors for the 3D effect
-  const getCurrentItem = () => aboutMeData.data[currentIndex];
-  const getPrevItem = () => aboutMeData.data[(currentIndex - 1 + totalItems) % totalItems];
-  const getNextItem = () => aboutMeData.data[(currentIndex + 1) % totalItems];
+  // Get animation classes based on position and transition state
+  const getAnimationClass = (position) => {
+    if (!isTransitioning) {
+      // Static positions when not transitioning
+      switch (position) {
+        case 'prev': return 'carousel-left';
+        case 'current': return 'carousel-center';
+        case 'next': return 'carousel-right';
+        default: return 'carousel-hidden';
+      }
+    }
+    
+    // During transition
+    if (direction === 'next') {
+      // Moving to the next slide
+      switch (position) {
+        case 'prev': return 'carousel-move-to-left';
+        case 'current': return 'carousel-move-to-left';
+        case 'next': return 'carousel-move-to-center';
+        default: return 'carousel-hidden';
+      }
+    } else {
+      // Moving to the previous slide
+      switch (position) {
+        case 'prev': return 'carousel-move-to-center';
+        case 'current': return 'carousel-move-to-right';
+        case 'next': return 'carousel-move-to-right';
+        default: return 'carousel-hidden';
+      }
+    }
+  };
+
+  // Get item classes with animation
+  const getItemClasses = (index) => {
+    const { prevIndex, nextIndex } = getIndices();
+    
+    let position = '';
+    if (index === prevIndex) position = 'prev';
+    else if (index === currentIndex) position = 'current';
+    else if (index === nextIndex) position = 'next';
+    else position = 'hidden';
+    
+    const baseClasses = "absolute transition-all duration-500 cursor-pointer";
+    const animationClass = getAnimationClass(position);
+    
+    return `${baseClasses} ${animationClass}`;
+  };
+
+  // Go to a specific slide by index
+  const goToSlide = (index) => {
+    if (isTransitioning || index === currentIndex) return;
+    
+    // Determine direction based on index comparison
+    const newDirection = (
+      index > currentIndex || 
+      (index === 0 && currentIndex === totalItems - 1)
+    ) ? 'next' : 'prev';
+    
+    setDirection(newDirection);
+    setIsTransitioning(true);
+    
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setTimeout(() => setIsTransitioning(false), 50);
+    }, 500);
+  };
 
   return (
     <section id="about" className="section bg-white py-20">
@@ -76,8 +163,12 @@ const About = () => {
           {/* Text Content - Left Side */}
           <div className="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
             <div className="transition-all duration-500 ease-in-out">
-              <h3 className="text-3xl font-bold text-primary mb-4">{getCurrentItem().name}</h3>
-              <p className="text-lg text-text-light mb-10">{getCurrentItem().description}</p>
+              <h3 className="text-3xl font-bold text-primary mb-4">
+                {aboutMeData.data[currentIndex].name}
+              </h3>
+              <p className="text-lg text-text-light mb-10">
+                {aboutMeData.data[currentIndex].description}
+              </p>
               
               <div className="flex gap-4">
                 <button 
@@ -103,12 +194,7 @@ const About = () => {
                 {aboutMeData.data.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => {
-                      if (isTransitioning) return;
-                      setIsTransitioning(true);
-                      setCurrentIndex(index);
-                      setTimeout(() => setIsTransitioning(false), 500);
-                    }}
+                    onClick={() => goToSlide(index)}
                     className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 ${
                       index === currentIndex ? 'bg-primary scale-125' : 'bg-gray-300'
                     }`}
@@ -128,54 +214,35 @@ const About = () => {
             onTouchEnd={handleTouchEnd}
           >
             <div className="carousel-container perspective-[1000px] h-full flex items-center justify-center">
-              {/* Previous Image (Left) */}
-              <div 
-                className="absolute transform -translate-x-[60%] scale-75 opacity-40 transition-all duration-500 z-10 hover:opacity-60 cursor-pointer"
-                style={{ 
-                  transform: `translateX(-60%) rotateY(45deg) scale(0.75)`,
-                  filter: 'blur(2px)',
-                  animation: isTransitioning ? 'none' : 'slideInFromLeft 0.5s ease-out'
-                }}
-                onClick={goToPrev}
-              >
-                <img 
-                  src={getPrevItem().image} 
-                  alt={getPrevItem().name}
-                  className="w-[300px] h-[380px] object-cover rounded-lg shadow-custom-medium"
-                />
-              </div>
-              
-              {/* Current Image (Center) */}
-              <div 
-                className="absolute transform transition-all duration-500 z-20 cursor-pointer"
-                style={{ 
-                  transform: isTransitioning ? 'scale(0.95)' : 'scale(1)',
-                  animation: isTransitioning ? 'none' : 'slideInFromCenter 0.5s ease-out'
-                }}
-              >
-                <img 
-                  src={getCurrentItem().image} 
-                  alt={getCurrentItem().name}
-                  className="w-[350px] h-[400px] object-cover rounded-lg shadow-custom-heavy"
-                />
-              </div>
-              
-              {/* Next Image (Right) */}
-              <div 
-                className="absolute transform translate-x-[60%] scale-75 opacity-40 transition-all duration-500 z-10 hover:opacity-60 cursor-pointer"
-                style={{ 
-                  transform: `translateX(60%) rotateY(-45deg) scale(0.75)`,
-                  filter: 'blur(2px)',
-                  animation: isTransitioning ? 'none' : 'slideInFromRight 0.5s ease-out'
-                }}
-                onClick={goToNext}
-              >
-                <img 
-                  src={getNextItem().image} 
-                  alt={getNextItem().name}
-                  className="w-[300px] h-[380px] object-cover rounded-lg shadow-custom-medium"
-                />
-              </div>
+              {aboutMeData.data.map((item, index) => {
+                const { prevIndex, nextIndex } = getIndices();
+                
+                // Only render visible items
+                if (index !== prevIndex && index !== currentIndex && index !== nextIndex) {
+                  return null;
+                }
+                
+                return (
+                  <div 
+                    key={index}
+                    className={getItemClasses(index)}
+                    onClick={() => {
+                      if (index === prevIndex) goToPrev();
+                      else if (index === nextIndex) goToNext();
+                    }}
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={item.name}
+                      className={`object-cover rounded-lg ${
+                        index === currentIndex 
+                          ? 'w-[350px] h-[400px] shadow-custom-heavy' 
+                          : 'w-[300px] h-[380px] shadow-custom-medium'
+                      }`}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
