@@ -1,9 +1,10 @@
 {
   "files": {
     "main.css": "/myportfolio/static/css/main.92d88e5f.css",
-    "main.js": "/myportfolio/static/js/main.2a05406c.js",
+    "main.js": "/myportfolio/static/js/main.409147e2.js",
     "static/js/453.906b0208.chunk.js": "/myportfolio/static/js/453.906b0208.chunk.js",
     "static/media/energetic.png": "/myportfolio/static/media/energetic.f593692ba23118f628af.png",
+    "static/media/profile.png": "/myportfolio/static/media/profile.bf0602b4b027a4be462b.png",
     "static/media/leadership.jpeg": "/myportfolio/static/media/leadership.641addd5c4843a0dd81a.jpeg",
     "static/media/Jenkins-Dark.svg": "/myportfolio/static/media/Jenkins-Dark.eb2f5aaad764c37db416a7f85c5d2f3f.svg",
     "static/media/Kali-Dark.svg": "/myportfolio/static/media/Kali-Dark.961bd99856a972d829340cf2ff5a4c81.svg",
@@ -51,11 +52,11 @@
     "static/media/Markdown-Dark.svg": "/myportfolio/static/media/Markdown-Dark.2055825dc19f864ce4d55a0237c3c8b0.svg",
     "static/media/TensorFlow-Dark.svg": "/myportfolio/static/media/TensorFlow-Dark.05eeef915cc89a8400db7fec9b21e70e.svg",
     "main.92d88e5f.css.map": "/myportfolio/static/css/main.92d88e5f.css.map",
-    "main.2a05406c.js.map": "/myportfolio/static/js/main.2a05406c.js.map",
+    "main.409147e2.js.map": "/myportfolio/static/js/main.409147e2.js.map",
     "453.906b0208.chunk.js.map": "/myportfolio/static/js/453.906b0208.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.92d88e5f.css",
-    "static/js/main.2a05406c.js"
+    "static/js/main.409147e2.js"
   ]
 }
