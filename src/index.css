@@ -349,12 +349,17 @@ code {
   animation: slideInRight 0.7s forwards;
 }
 
+[data-visible="true"] .animate-gridReveal {
+  animation: gridReveal 0.5s forwards;
+}
+
 /* Elements are hidden by default until they become visible */
 .animate-fadeInUp,
 .animate-fadeIn,
 .animate-zoomIn,
 .animate-slideInLeft,
-.animate-slideInRight {
+.animate-slideInRight,
+.animate-gridReveal {
   opacity: 0;
 }
 
@@ -408,5 +413,22 @@ code {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes gridReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.5;
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
   }
 }

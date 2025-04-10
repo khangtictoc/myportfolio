@@ -1,5 +1,6 @@
 import React from 'react';
 import TechStackItem from './TechStackItem';
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 // Import the SVG icons
 
 // Devops, Cloud & Infra
@@ -53,6 +54,8 @@ import vsSVG from '../asset/icon/VisualStudio-Dark.svg';
 import eclipseSVG from '../asset/icon/Eclipse-Dark.svg';
 
 const TechStack = () => {
+  const sectionRef = useIntersectionObserver();
+  
   const skills = {
     devops: [
       { name: 'AWS', iconSrc: awsSVG },
@@ -107,16 +110,23 @@ const TechStack = () => {
   };
 
   // Component for a single skill category
-  const SkillCategory = ({ title, skills }) => (
-    <div className="flex-1 min-w-[300px] bg-white p-8 rounded-lg shadow-custom-light">
-      <h3 className="text-xl font-semibold mb-5 pb-2 border-b border-border-color">{title}</h3>
+  const SkillCategory = ({ title, skills, animationDelay }) => (
+    <div 
+      className="flex-1 min-w-[300px] bg-white p-8 rounded-lg shadow-custom-light animate-fadeInUp"
+      style={{ animationDelay: `${animationDelay}s` }}
+    >
+      <h3 className="text-xl font-semibold mb-5 pb-2 border-b border-border-color animate-fadeIn" 
+          style={{ animationDelay: `${animationDelay + 0.2}s` }}>
+        {title}
+      </h3>
       <div className="flex flex-wrap gap-5">
         {skills.map((skill, index) => (
           <TechStackItem 
             key={index} 
             name={skill.name} 
             iconSrc={skill.iconSrc} 
-            altText={`${skill.name} icon`} 
+            altText={`${skill.name} icon`}
+            animationDelay={animationDelay + 0.3 + (index * 0.05)}
           />
         ))}
       </div>
@@ -124,13 +134,19 @@ const TechStack = () => {
   );
 
   return (
-    <section id="tech-stack" className="section">
+    <section id="tech-stack" className="section bg-light py-20" ref={sectionRef}>
       <div className="container">
-        <h2 className="section-title">Tech Stack</h2>
+        <h2 className="section-title animate-fadeIn">Tech Stack</h2>
+        
+        <p className="text-center max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
+          These are the technologies I've worked with throughout my career. 
+          I continuously expand my skillset to stay at the forefront of modern development practices.
+        </p>
+        
         <div className="flex flex-wrap gap-8 justify-between">
-          <SkillCategory title="DevOps, Cloud & Infra" skills={skills.devops} />
-          <SkillCategory title="Programming & Languages" skills={skills.programming} />
-          <SkillCategory title="Tools & Technologies" skills={skills.tools} />
+          <SkillCategory title="DevOps, Cloud & Infra" skills={skills.devops} animationDelay={0.2} />
+          <SkillCategory title="Programming & Languages" skills={skills.programming} animationDelay={0.4} />
+          <SkillCategory title="Tools & Technologies" skills={skills.tools} animationDelay={0.6} />
         </div>
       </div>
     </section>
