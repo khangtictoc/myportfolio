@@ -327,3 +327,54 @@ code {
 .hero-heading:hover::after {
   width: 50%;
 }
+
+/* Intersection Observer Animation */
+[data-visible="true"] .animate-fadeInUp {
+  animation: fadeInUp 0.7s forwards;
+}
+
+[data-visible="true"] .animate-fadeIn {
+  animation: fadeIn 0.7s forwards;
+}
+
+[data-visible="true"] .animate-zoomIn {
+  animation: zoomIn 0.7s forwards;
+}
+
+/* Elements are hidden by default until they become visible */
+.animate-fadeInUp,
+.animate-fadeIn,
+.animate-zoomIn {
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 /**
  * Custom hook for tracking element intersection with viewport
@@ -6,29 +6,29 @@ import { useState, useEffect, useRef } from 'react';
  * @param {number} options.threshold - Threshold for triggering intersection (0-1)
  * @param {string} options.root - Element used as viewport for checking visibility
  * @param {string} options.rootMargin - Margin around the root element
- * @returns {Array} [ref, isIntersecting, entry] - Reference to attach to element, boolean for intersection state, and the full IntersectionObserverEntry
+ * @returns {Object} Reference to attach to element
  */
 const useIntersectionObserver = (options = {}) => {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-  const [entry, setEntry] = useState(null);
   const elementRef = useRef(null);
-
-  const defaultOptions = {
-    threshold: 0,
-    root: null,
-    rootMargin: '0px',
-  };
-
-  const observerOptions = { ...defaultOptions, ...options };
 
   useEffect(() => {
     const element = elementRef.current;
 
     if (!element) return;
 
+    // Initialize options inside useEffect to avoid creating new object on every render
+    const observerOptions = {
+      threshold: 0,
+      root: null,
+      rootMargin: '0px',
+      ...options
+    };
+
     const observer = new IntersectionObserver(([entry]) => {
-      setIsIntersecting(entry.isIntersecting);
-      setEntry(entry);
+      // We apply a data attribute to mark elements as visible when they intersect
+      if (entry.isIntersecting) {
+        element.setAttribute('data-visible', 'true');
+      }
     }, observerOptions);
 
     observer.observe(element);
@@ -38,7 +38,7 @@ const useIntersectionObserver = (options = {}) => {
         observer.unobserve(element);
       }
     };
-  }, [elementRef, observerOptions.threshold, observerOptions.root, observerOptions.rootMargin]);
+  }, [options]); // options as a dependency is okay since it's passed as a parameter
 
   return elementRef;
 };
