@@ -366,6 +366,12 @@ code {
   animation: floatReverse 10s ease-in-out infinite;
 }
 
+/* Achievement animations */
+.animate-trophy-shimmer {
+  animation: trophyShimmer 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgba(74, 108, 247, 0.5));
+}
+
 /* Elements are hidden by default until they become visible */
 .animate-fadeInUp,
 .animate-fadeIn,
@@ -467,5 +473,20 @@ code {
   }
   100% {
     transform: translateY(0px) translateX(0px);
+  }
+}
+
+@keyframes trophyShimmer {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(74, 108, 247, 0.3));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(74, 108, 247, 0.7));
+    transform: scale(1.05);
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(74, 108, 247, 0.3));
+    transform: scale(1);
   }
 }
