@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/myportfolio/static/css/main.39816398.css",
-    "main.js": "/myportfolio/static/js/main.84e3d5de.js",
+    "main.css": "/myportfolio/static/css/main.600b3f80.css",
+    "main.js": "/myportfolio/static/js/main.fa16651a.js",
     "static/js/453.906b0208.chunk.js": "/myportfolio/static/js/453.906b0208.chunk.js",
     "static/media/energetic.png": "/myportfolio/static/media/energetic.f593692ba23118f628af.png",
     "static/media/profile.png": "/myportfolio/static/media/profile.bf0602b4b027a4be462b.png",
@@ -51,12 +51,12 @@
     "static/media/Terraform-Dark.svg": "/myportfolio/static/media/Terraform-Dark.514df570b40ca0790beb51fe156d01c3.svg",
     "static/media/Markdown-Dark.svg": "/myportfolio/static/media/Markdown-Dark.2055825dc19f864ce4d55a0237c3c8b0.svg",
     "static/media/TensorFlow-Dark.svg": "/myportfolio/static/media/TensorFlow-Dark.05eeef915cc89a8400db7fec9b21e70e.svg",
-    "main.39816398.css.map": "/myportfolio/static/css/main.39816398.css.map",
-    "main.84e3d5de.js.map": "/myportfolio/static/js/main.84e3d5de.js.map",
+    "main.600b3f80.css.map": "/myportfolio/static/css/main.600b3f80.css.map",
+    "main.fa16651a.js.map": "/myportfolio/static/js/main.fa16651a.js.map",
     "453.906b0208.chunk.js.map": "/myportfolio/static/js/453.906b0208.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.39816398.css",
-    "static/js/main.84e3d5de.js"
+    "static/css/main.600b3f80.css",
+    "static/js/main.fa16651a.js"
   ]
 }
