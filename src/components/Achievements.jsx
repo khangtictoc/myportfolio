@@ -74,7 +74,7 @@ const Achievements = () => {
 
                 {/* Organizer and Year */}
                 <div
-                  className="text-sm text-text-light mb-4 animate-fadeIn flex justify-center gap-2 group-hover:text-primary transition-colors duration-300"
+                  className="text-sm text-text-light mb-4 animate-fadeIn flex justify-center gap-2 group-hover:text-primary group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-300 transform"
                   style={{ animationDelay: `${0.7 + index * 0.1}s` }}
                 >
                   <span className="font-medium">{achievement.organizer}</span>
