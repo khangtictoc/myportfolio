@@ -7,32 +7,32 @@
   .btn {
     @apply px-6 py-2.5 rounded-full font-semibold transition-all duration-300 inline-block cursor-pointer text-base;
   }
-  
+
   .btn-primary {
     @apply bg-primary text-white hover:bg-secondary hover:transform hover:-translate-y-1 hover:shadow-custom-medium;
   }
-  
+
   .btn-secondary {
     @apply bg-transparent text-primary border-2 border-primary hover:bg-primary hover:text-white hover:transform hover:-translate-y-1;
   }
-  
+
   .btn-small {
     @apply px-4 py-2 text-sm;
   }
-  
+
   .section {
     @apply py-24;
   }
-  
+
   .section-title {
     @apply text-4xl mb-12 text-center relative;
   }
-  
+
   .section-title:after {
-    content: '';
+    content: "";
     @apply absolute w-[70px] h-1 bg-primary -bottom-3 left-1/2 transform -translate-x-1/2 rounded-sm;
   }
-  
+
   .container {
     @apply w-[90%] max-w-7xl mx-auto px-5;
   }
@@ -41,7 +41,7 @@
   .perspective-1000 {
     perspective: 1000px;
   }
-  
+
   .carousel-container {
     transform-style: preserve-3d;
   }
@@ -127,8 +127,12 @@
   }
 
   @keyframes scanlines {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100%; }
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100%;
+    }
   }
 
   /* Glitch animation effect */
@@ -169,8 +173,13 @@
 
   /* Blink animation for the cursor */
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   .blink {
@@ -179,15 +188,33 @@
 
   /* Text flicker effect for terminal output */
   @keyframes textflicker {
-    0% { opacity: 0.9; }
-    2% { opacity: 0.5; }
-    4% { opacity: 0.9; }
-    19% { opacity: 1; }
-    21% { opacity: 0.7; }
-    23% { opacity: 1; }
-    80% { opacity: 0.9; }
-    83% { opacity: 0.4; }
-    87% { opacity: 0.9; }
+    0% {
+      opacity: 0.9;
+    }
+    2% {
+      opacity: 0.5;
+    }
+    4% {
+      opacity: 0.9;
+    }
+    19% {
+      opacity: 1;
+    }
+    21% {
+      opacity: 0.7;
+    }
+    23% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0.9;
+    }
+    83% {
+      opacity: 0.4;
+    }
+    87% {
+      opacity: 0.9;
+    }
   }
 
   .terminal-content {
@@ -202,14 +229,14 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* Keyframe Animations */
@@ -353,7 +380,7 @@ code {
 .carousel-right {
   transform: translateX(60%) rotateY(-45deg) scale(0.75);
   opacity: 0.4;
-  z-index: 10; 
+  z-index: 10;
   filter: blur(2px);
 }
 
@@ -400,17 +427,32 @@ code {
 
 /* Terminal Animation */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Add a subtle glitch effect occasionally */
 @keyframes glitch {
-  0% { transform: translateX(0); }
-  2% { transform: translateX(3px); }
-  4% { transform: translateX(-3px); }
-  6% { transform: translateX(0); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  2% {
+    transform: translateX(3px);
+  }
+  4% {
+    transform: translateX(-3px);
+  }
+  6% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .terminal-line {
@@ -437,14 +479,20 @@ code {
 }
 
 @keyframes scanlines {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100%; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
 }
 
 /* Hero h1 heading hover animation */
 .hero-heading {
   position: relative;
-  transition: transform 0.4s ease, text-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    text-shadow 0.4s ease;
 }
 
 .hero-heading:hover {
@@ -453,14 +501,19 @@ code {
 }
 
 .hero-heading::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
   bottom: -8px;
   left: 25%;
   right: 25%;
-  background: linear-gradient(90deg, transparent, rgba(74, 108, 247, 0.8), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 108, 247, 0.8),
+    transparent
+  );
   transition: width 0.5s ease;
 }
 
@@ -525,11 +578,15 @@ code {
 }
 
 .profile-image-container::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(45deg, transparent 40%, rgba(74, 108, 247, 0.5) 100%);
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(74, 108, 247, 0.5) 100%
+  );
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 1;
@@ -541,11 +598,15 @@ code {
 }
 
 .profile-image-container::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -5px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(74, 108, 247, 0.1) 0%, transparent 50%);
+  background: linear-gradient(
+    135deg,
+    rgba(74, 108, 247, 0.1) 0%,
+    transparent 50%
+  );
   z-index: -1;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -683,5 +744,20 @@ code {
   100% {
     filter: drop-shadow(0 0 2px rgba(74, 108, 247, 0.3));
     transform: scale(1);
+  }
+}
+/* Achievement Card Animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
   }
 }
