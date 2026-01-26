@@ -13,7 +13,7 @@ const Achievements = () => {
     >
       <div className="container">
         <h2 className="section-title animate-fadeIn">
-          {achievementData.name}s
+          {achievementData.name}
         </h2>
 
         <p

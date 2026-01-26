@@ -19,7 +19,7 @@ const Projects = () => {
   return (
     <section id="projects" className="section bg-light py-20" ref={sectionRef}>
       <div className="container">
-        <h2 className="section-title animate-fadeIn">{projectsData.name}s</h2>
+        <h2 className="section-title animate-fadeIn">{projectsData.name}</h2>
         
         <p className="text-center max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
           A selection of professional projects I've worked on throughout my career,
