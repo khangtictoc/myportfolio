@@ -86,7 +86,7 @@ const Achievements = () => {
 
                 {/* Description */}
                 <p
-                  className="text-text-light leading-relaxed animate-fadeIn group-hover:text-text-primary group-hover:font-medium transition-all duration-300"
+                  className="text-text-light leading-relaxed animate-fadeIn group-hover:text-text-primary group-hover:-translate-y-1 group-hover:scale-105 transition-all duration-500 transform"
                   style={{ animationDelay: `${0.8 + index * 0.1}s` }}
                 >
                   {achievement.description}
