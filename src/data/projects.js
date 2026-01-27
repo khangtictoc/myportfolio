@@ -33,6 +33,7 @@ const projects = {
                 "Develop strategy for data migration from on-premises to AWS/Azure cloud",
                 "Plan schedule for data migrations with phases for minimal impact on business operations",
                 "Design cloud infrastructure & righ-sizing for cost optimization",
+                "Monitoring system, support 24/7 with SL2 teams to handle unexpected incidents, receive incoming call from C-levels."
             ],
             "role": "DevOps Engineer",
             "duration": "1 year",
