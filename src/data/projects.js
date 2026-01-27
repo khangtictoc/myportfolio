@@ -5,6 +5,7 @@ const projects = {
             "name": "Halliburton (FPT Software) - Oil & Gas Platform",
             "shortDescription": "A web-based platform for managing Oil Mining & Drilling operations",
             "description": "A modern responsive website built with React and Tailwind CSS for UI. Node.js and Express for backend services. MongoDB for database management. Multiple operation team, our team takes charge of services relating to structure, components, equipments and operations of oil rig",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/company/fpt-software.png",
             "technologies": ["AWS", "Azure", "Jenkins", "Helm", "Terraform/Atlantis", "Ansible Tower(AWX)/Molecule"],
             "responsibilities": [
                 "Streamlined the deployment process for Java microservices and React web apps",
@@ -24,6 +25,7 @@ const projects = {
             "name": "Mercatus -Multi-tenant E-Commerce Platform",
             "shortDescription": "Full-stack e-commerce solution with payment processing",
             "description": "A comprehensive e-commerce platform with user & product management, warehouse control. Variety of shopping cart features, scheduled advertisements/order. Secure payment processing integration with the compliance of PCI-DSS standards.",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/company/mercatus.jpg",
             "technologies": ["Jenkins", "ArgoCD", "Terraform", "Ansible", "Prometheus", "Grafana stacks"],
             "responsibilities": [
                 "Build automation workflows for CI/CD, quality/security testing, and deployment of applications",
@@ -42,6 +44,7 @@ const projects = {
             "name": "NAB - 1st Australian Bank [CURRENT]",
             "shortDescription": "Banking application with multi-tenant architecture",
             "description": "A multi-tenant platform with mutiple cloud vendors. Each tenant represents a separate bank branch with isolated data and configurations, responsible for specific limited scope. Our tenants could decide which cloud provider to onboard services. The CHANGE process is strictly followed to ensure compliance with banking regulations, avoid major impact on services by any personal causes. The security is hardened with multi-layer protection, permission of VMs, services are granted as minimized as possible along with fine-grained roles.",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/company/nab.png",
             "technologies": ["Jenkins", "Harness", "Helm", "Terraform", "Kubernetes (Azure)", "Grafana stacks", "OPA Gatekeeper", "Istio Gateway", "Nginx Ingress", "Calico Network Policies"],
             "responsibilities": [
                 "Main responsible for maintaining and improving AKS clusters (Azure)",
