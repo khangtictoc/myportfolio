@@ -16,7 +16,7 @@ const projects = {
             ],
             "role": "Cloud Engineer",
             "duration": "6 months",
-            "year": "2024",
+            "year": "2023",
             "githubLink": "https://github.com/yourusername/portfolio",
             "demoLink": "https://portfolio-demo.com"
         },
