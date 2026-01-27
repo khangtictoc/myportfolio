@@ -29,14 +29,6 @@ const Projects = () => {
       <div className="container">
         <h2 className="section-title animate-fadeIn">{projectsData.name}</h2>
 
-        <p
-          className="text-center max-w-3xl mx-auto mb-10 animate-fadeInUp"
-          style={{ animationDelay: "0.1s" }}
-        >
-          A selection of professional projects I've worked on throughout my
-          career, showcasing my technical abilities and problem-solving skills.
-        </p>
-
         <div className="grid grid-cols-1 gap-10">
           {projectsData.data.map((project, index) => (
             <div

@@ -137,12 +137,6 @@ const TechStack = () => {
     <section id="tech-stack" className="section bg-light py-20" ref={sectionRef}>
       <div className="container">
         <h2 className="section-title animate-fadeIn">Tech Stack</h2>
-        
-        <p className="text-center max-w-3xl mx-auto mb-10 animate-fadeInUp" style={{ animationDelay: "0.1s" }}>
-          These are the technologies I've worked with throughout my career. 
-          I continuously expand my skillset to stay at the forefront of modern development practices.
-        </p>
-        
         <div className="flex flex-wrap gap-8 justify-between">
           <SkillCategory title="DevOps, Cloud & Infra" skills={skills.devops} animationDelay={0.2} />
           <SkillCategory title="Programming & Languages" skills={skills.programming} animationDelay={0.4} />

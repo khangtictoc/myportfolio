@@ -16,14 +16,6 @@ const Achievements = () => {
           {achievementData.name}
         </h2>
 
-        <p
-          className="text-center max-w-3xl mx-auto mb-12 animate-fadeInUp"
-          style={{ animationDelay: "0.1s" }}
-        >
-          Professional certifications and recognitions that highlight my
-          expertise and dedication to continuous learning.
-        </p>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievementData.data.map((achievement, index) => (
             <div
