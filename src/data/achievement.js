@@ -42,12 +42,28 @@ const achievements = {
             "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/ckad.png"
         },
         {
-            "name": "KCNA",
+            "name": "CKS",
             "result": "Certified",
             "yearDate": "2025",
+            "organizer": "Linux Foundation",
+            "description": "Certified Kubernetes Security Administrator",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/cks.png"
+        },
+        {
+            "name": "KCNA",
+            "result": "Certified",
+            "yearDate": "2026",
             "organizer": "Amazon",
             "description": "Kubernetes and Cloud Native Associate",
             "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/kcna.png"
+        },
+        {
+            "name": "KCSA",
+            "result": "Certified",
+            "yearDate": "2026",
+            "organizer": "Linux Foundation",
+            "description": "Kubernetes and Cloud Native Security Associate",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/kcsa.png"
         }
     ]
 }

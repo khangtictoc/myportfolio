@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import aboutMeData from '../data/aboutme';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import aboutMeData from "../data/aboutme";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const About = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,39 +10,33 @@ const About = () => {
   const [touchEnd, setTouchEnd] = useState(0);
   const carouselRef = useRef(null);
   const totalItems = aboutMeData.data.length;
-  
+
   // Function to go to next slide
+  // Next: center→left, left→right, right→center
   const goToNext = useCallback(() => {
     if (isTransitioning) return;
-    setDirection('next');
+    setDirection("next");
     setIsTransitioning(true);
-    
-    // We'll update the current index after the animation is complete
+
     setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
-      
-      // Add a small delay before allowing new transitions
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 50);
-    }, 500);
+      setIsTransitioning(false);
+      setDirection(null);
+    }, 600);
   }, [isTransitioning, totalItems]);
 
   // Function to go to previous slide
+  // Prev: center→right, right→left, left→center
   const goToPrev = useCallback(() => {
     if (isTransitioning) return;
-    setDirection('prev');
+    setDirection("prev");
     setIsTransitioning(true);
-    
-    // We'll update the current index after the animation is complete
+
     setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
-      
-      // Add a small delay before allowing new transitions
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 50);
-    }, 500);
+      setIsTransitioning(false);
+      setDirection(null);
+    }, 600);
   }, [isTransitioning, totalItems]);
 
   // Handle touch events for swipe
@@ -66,16 +60,15 @@ const About = () => {
       goToPrev();
     }
 
-    // Reset values
     setTouchStart(0);
     setTouchEnd(0);
   };
 
-  // Auto rotate carousel (optional)
+  // Auto rotate carousel
   useEffect(() => {
     const interval = setInterval(() => {
       goToNext();
-    }, 8000); // Change slide every 8 seconds
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [goToNext]);
@@ -87,78 +80,75 @@ const About = () => {
     return { prevIndex, nextIndex };
   };
 
-  // Get animation classes based on position and transition state
+  // Get animation class for each card based on its position and transition direction
   const getAnimationClass = (position) => {
-    if (!isTransitioning) {
-      // Static positions when not transitioning
+    if (!isTransitioning || !direction) {
+      // Static positions
       switch (position) {
-        case 'prev': return 'carousel-left';
-        case 'current': return 'carousel-center';
-        case 'next': return 'carousel-right';
-        default: return 'carousel-hidden';
+        case "left":
+          return "carousel-pos-left";
+        case "center":
+          return "carousel-pos-center";
+        case "right":
+          return "carousel-pos-right";
+        default:
+          return "carousel-hidden";
       }
     }
-    
-    // During transition
-    if (direction === 'next') {
-      // Moving to the next slide
+
+    if (direction === "next") {
+      // Next: center→left, left→right, right→center
       switch (position) {
-        case 'prev': return 'carousel-move-to-left';
-        case 'current': return 'carousel-move-to-left';
-        case 'next': return 'carousel-move-to-center';
-        default: return 'carousel-hidden';
+        case "center":
+          return "carousel-center-to-left";
+        case "left":
+          return "carousel-left-to-right";
+        case "right":
+          return "carousel-right-to-center";
+        default:
+          return "carousel-hidden";
       }
     } else {
-      // Moving to the previous slide
+      // Prev: center→right, right→left, left→center
       switch (position) {
-        case 'prev': return 'carousel-move-to-center';
-        case 'current': return 'carousel-move-to-right';
-        case 'next': return 'carousel-move-to-right';
-        default: return 'carousel-hidden';
+        case "center":
+          return "carousel-center-to-right";
+        case "right":
+          return "carousel-right-to-left";
+        case "left":
+          return "carousel-left-to-center";
+        default:
+          return "carousel-hidden";
       }
     }
   };
 
-  // Get item classes with animation
-  const getItemClasses = (index) => {
+  // Determine position label for each index
+  const getPosition = (index) => {
     const { prevIndex, nextIndex } = getIndices();
-    
-    let position = '';
-    if (index === prevIndex) position = 'prev';
-    else if (index === currentIndex) position = 'current';
-    else if (index === nextIndex) position = 'next';
-    else position = 'hidden';
-    
-    const baseClasses = "absolute transition-all duration-500 cursor-pointer";
-    const animationClass = getAnimationClass(position);
-    
-    return `${baseClasses} ${animationClass}`;
+    if (index === currentIndex) return "center";
+    if (index === prevIndex) return "left";
+    if (index === nextIndex) return "right";
+    return "hidden";
   };
 
-  // Go to a specific slide by index
+  // Go to a specific slide by index (via dot indicators)
   const goToSlide = (index) => {
     if (isTransitioning || index === currentIndex) return;
-    
-    // Determine direction based on index comparison
-    const newDirection = (
-      index > currentIndex || 
-      (index === 0 && currentIndex === totalItems - 1)
-    ) ? 'next' : 'prev';
-    
-    setDirection(newDirection);
-    setIsTransitioning(true);
-    
-    setTimeout(() => {
-      setCurrentIndex(index);
-      setTimeout(() => setIsTransitioning(false), 50);
-    }, 500);
+    const { prevIndex } = getIndices();
+
+    if (index === prevIndex) {
+      goToPrev();
+    } else {
+      goToNext();
+    }
   };
 
   return (
     <section id="about" className="section bg-white py-20">
       <div className="container mx-auto px-4">
         <h2 className="section-title">{aboutMeData.name}</h2>
-        
+
         <div className="flex flex-col lg:flex-row items-center justify-between mt-16">
           {/* Text Content - Left Side */}
           <div className="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
@@ -169,18 +159,18 @@ const About = () => {
               <p className="text-lg text-text-light mb-10">
                 {aboutMeData.data[currentIndex].description}
               </p>
-              
+
               <div className="flex gap-4">
-                <button 
-                  onClick={goToPrev} 
+                <button
+                  onClick={goToPrev}
                   className="btn btn-secondary flex items-center justify-center"
                   disabled={isTransitioning}
                   aria-label="Previous slide"
                 >
                   <FaChevronLeft className="mr-2" /> Previous
                 </button>
-                <button 
-                  onClick={goToNext} 
+                <button
+                  onClick={goToNext}
                   className="btn btn-primary flex items-center justify-center"
                   disabled={isTransitioning}
                   aria-label="Next slide"
@@ -188,7 +178,7 @@ const About = () => {
                   Next <FaChevronRight className="ml-2" />
                 </button>
               </div>
-              
+
               {/* Indicators */}
               <div className="flex justify-center mt-8">
                 {aboutMeData.data.map((_, index) => (
@@ -196,7 +186,9 @@ const About = () => {
                     key={index}
                     onClick={() => goToSlide(index)}
                     className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 ${
-                      index === currentIndex ? 'bg-primary scale-125' : 'bg-gray-300'
+                      index === currentIndex
+                        ? "bg-primary scale-125"
+                        : "bg-gray-300"
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -204,40 +196,40 @@ const About = () => {
               </div>
             </div>
           </div>
-          
+
           {/* 3D Carousel - Right Side */}
-          <div 
+          <div
             ref={carouselRef}
             className="lg:w-1/2 relative h-[400px]"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className="carousel-container perspective-[1000px] h-full flex items-center justify-center">
+            <div className="carousel-container perspective-1000 h-full flex items-center justify-center">
               {aboutMeData.data.map((item, index) => {
-                const { prevIndex, nextIndex } = getIndices();
-                
+                const position = getPosition(index);
+
                 // Only render visible items
-                if (index !== prevIndex && index !== currentIndex && index !== nextIndex) {
-                  return null;
-                }
-                
+                if (position === "hidden") return null;
+
+                const animationClass = getAnimationClass(position);
+
                 return (
-                  <div 
+                  <div
                     key={index}
-                    className={getItemClasses(index)}
+                    className={`absolute cursor-pointer ${animationClass}`}
                     onClick={() => {
-                      if (index === prevIndex) goToPrev();
-                      else if (index === nextIndex) goToNext();
+                      if (position === "left") goToPrev();
+                      else if (position === "right") goToNext();
                     }}
                   >
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.name}
                       className={`object-cover rounded-lg ${
-                        index === currentIndex 
-                          ? 'w-[350px] h-[400px] shadow-custom-heavy' 
-                          : 'w-[300px] h-[380px] shadow-custom-medium'
+                        position === "center"
+                          ? "w-[350px] h-[400px] shadow-custom-heavy"
+                          : "w-[300px] h-[380px] shadow-custom-medium"
                       }`}
                     />
                   </div>
@@ -251,4 +243,4 @@ const About = () => {
   );
 };
 
-export default About; 
+export default About;
