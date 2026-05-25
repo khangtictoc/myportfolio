@@ -1,25 +1,25 @@
-import energeticImg from  '../asset/img/energetic.png';
-import leadershipImg from  '../asset/img/leadership.jpeg';
-import thinkingImg from  '../asset/img/thinking_and_logic.jpg';
+import energeticImg from '../asset/img/energetic.png';
+import leadershipImg from '../asset/img/leadership.jpeg';
+import thinkingImg from '../asset/img/thinking_and_logic.jpg';
 const aboutMe = {
     "name": "About Me",
     "data": [
         {
             "name": "Thinking & Logic",
-            "description": "I know how to come up with crazy silly tasks to make employee work in holidays and in the freetime to bring them with sadness.",
-            "image": energeticImg
+            "description": "Quick research, fast learning, and logical thinking are my strengths. I can quickly grasp new concepts and apply them effectively in various situations.",
+            "image": thinkingImg
         },
         {
-            
+
             "name": "Leadership",
-            "description": "Handle smart way to cut short on budget, by get rid of Udemy for worker to be no educated, no days off cash conversion, firing employees and making the rest work more for less money and et cetera.",
+            "description": "Strong leadership skills and can effectively manage and motivate teams to achieve common goals.",
             "image": leadershipImg
         },
         {
-            
+
             "name": "Energetic & Positive",
-            "description": "Infinite ability to torture people with trivial and dumbshit principles. Thus, my employees are mad and willing to leave, then the cost of the company should be lower then ever before.",
-            "image": thinkingImg
+            "description": "Efficient cooperation and positive attitude, I can work well with others and contribute to a positive team environment.",
+            "image": energeticImg
         }
     ]
 }
