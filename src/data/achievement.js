@@ -64,6 +64,14 @@ const achievements = {
             "organizer": "Linux Foundation",
             "description": "Kubernetes and Cloud Native Security Associate",
             "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/kcsa.png"
+        },
+        {
+            "name": "Kubestronaut",
+            "result": "Certified",
+            "yearDate": "2026",
+            "organizer": "Linux Foundation",
+            "description": "Complete All Kubernetes Exam",
+            "image": "https://personal-portfolio-khangtictoc.s3.us-east-1.amazonaws.com/asset/img/certificate/kubestronaut.png"
         }
     ]
 }
